@@ -1,0 +1,31 @@
+Notes for building our own MP3 parser.
+
+Structure of MP3 file format :
+    Frames -> [Header , Compressed audio data]
+
+    Frame Header 4 bytes
+    1. Sync bits -> always 11111111111 (11 bits)
+    2. MPEG version -> Verison of MPEG (1/2)
+    3. Layer -> Indicator of layer
+    4. Bitrate -> Indicate the bitrates
+    5. Sampling rate -> Smapling frequency of the audio
+    6. Padding bit -> determine the frame size adjustment
+    7. Channel mode -> Mono or stereo
+
+Decoding Steps :
+    
+    1. Parse the header to extract the properties.
+    2. Extract and decode the compressed audio data.
+    3. Convert the decoded data into PCM format.
+    4. Send PCM data to the audio playback system.
+
+Plan for Custom Parsing and Decoding
+
+    1. Read the MP3 File
+            Use FileInputStream or BufferedInputStream to read the MP3 file byte by byte.
+    2. Parse MP3 Frame Headers
+            Parse the header and identify a valid MP3 frame.
+            Extract key properties e.g. bitrate, sampling rate etc.
+    3. Decode Compressed Data
+ 
+    4. Play the PCM Data
